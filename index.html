@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Age Calculator</title>
+</head>
+<body class="gradient-overlay">
+    
+       
+   
+    <div class="container">
+
+      <div class="section1">
+
+        <div class="title"><h1>Age Calculator</h1></div> 
+
+         <form class="birthDateForm">
+            <h4 class="inputHeading">Date of Birth</h4>
+            <div><label>Day</label>  <input class="inputs" id="dayOfBirth" type="number" min="1"    placeholder="enter in number"></div>
+            <div><label>Month</label><input class="inputs" id="monthOfBirth" type="number" min="1"  placeholder="enter in number"></div>
+            <div><label>Year</label> <input class="inputs" id="yearOfBirth" type="number" min="1"   placeholder="enter in number"></div>
+         </form>
+
+         <form class="findAgeForm">
+            <h4 class="inputHeading">Find Age on</h4>
+            <div><label>Day</label>   <input class="inputs" id="onDay" type="number" min="1"     placeholder="enter in number"></div>
+            <div><label>Month</label> <input class="inputs" id="onMonth" type="number" min="1"   placeholder="enter in number"></div>
+            <div><label>Year</label>  <input class="inputs" id="onYear" type="number" min="1"    placeholder="enter in number"></div>
+         </form>
+
+         <div class="button">
+            <div class="cal_btn btns" onclick="calculateAge()">Calculate</div>
+            <div class="clear_btn btns" onclick="clearAll()">Clear</div>
+         </div>
+        </div>
+
+        <div class="section2">
+           <div class="ageBox">
+             <img src="profile.png" alt="profile">
+             <h4 class="sec2Age"></h4>
+            </div>
+          
+            <div class="unitsPara">
+               <div class="unitTitle">
+               <p class="titlePara">Age in different units</p>
+               </div>
+               <ul>
+                <li  id="y_m_d_para"></li>
+                <li class="liPara hide" id="m_d_para"></li>
+                <li class="liPara hide" id="w_d_para"></li>
+                <li class="liPara hide" id="d_para"></li>
+                </ul>
+            </div>
+        </div>
+
+ 
+        </div>
+
+ <script src="script.js"></script>
+</body>
+</html>

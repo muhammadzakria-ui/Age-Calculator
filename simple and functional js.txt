@@ -1,0 +1,118 @@
+// Select elements once
+let age_Para = document.querySelector(".sec2Age");
+let year_Month_Day_Para = document.querySelector("#y_m_d_para");
+let month_Day_Para = document.querySelector("#m_d_para");
+let week_Day_Para = document.querySelector("#w_d_para");
+let day_Para = document.querySelector("#d_para");
+let li_Para = document.querySelectorAll(".liPara");
+let errorMessage = document.createElement("p");
+errorMessage.style.color = "red";
+document.querySelector(".section2").prepend(errorMessage); // add error box at top
+
+// ✅ Function: Get Inputs
+function getInputs() {
+  return {
+    dayOfBirth: parseInt(document.querySelector("#dayOfBirth").value),
+    monthOfBirth: parseInt(document.querySelector("#monthOfBirth").value) - 1, // 0-based
+    yearOfBirth: parseInt(document.querySelector("#yearOfBirth").value),
+    onDay: parseInt(document.querySelector("#onDay").value),
+    onMonth: parseInt(document.querySelector("#onMonth").value) - 1,
+    onYear: parseInt(document.querySelector("#onYear").value),
+  };
+}
+
+// ✅ Function: Check if date is valid
+function isValidDate(y, m, d) {
+  let test = new Date(y, m, d);
+  return test.getFullYear() === y && test.getMonth() === m && test.getDate() === d;
+}
+
+// ✅ Main Function: Calculate Age
+function calculateAge() {
+  clearOutput(); // clear old results
+  let { dayOfBirth, monthOfBirth, yearOfBirth, onDay, onMonth, onYear } = getInputs();
+
+  // 1. Check empty or invalid numbers
+  if ([dayOfBirth, monthOfBirth, yearOfBirth, onDay, onMonth, onYear].some(isNaN)) {
+    errorMessage.innerText = "⚠️ Please enter all values.";
+    return;
+  }
+
+  // 2. Check positive numbers
+  if (dayOfBirth <= 0 || yearOfBirth <= 0 || onDay <= 0 || onYear <= 0) {
+    errorMessage.innerText = "⚠️ Values must be positive numbers.";
+    return;
+  }
+
+  // 3. Check month range
+  if (monthOfBirth < 0 || monthOfBirth > 11 || onMonth < 0 || onMonth > 11) {
+    errorMessage.innerText = "⚠️ Months must be between 1 and 12.";
+    return;
+  }
+
+  // 4. Check valid dates
+  if (!isValidDate(yearOfBirth, monthOfBirth, dayOfBirth)) {
+    errorMessage.innerText = "⚠️ Birth date is invalid.";
+    return;
+  }
+  if (!isValidDate(onYear, onMonth, onDay)) {
+    errorMessage.innerText = "⚠️ 'Find age on' date is invalid.";
+    return;
+  }
+
+  // 5. Birth date cannot be after 'on' date
+  let birthDate = new Date(yearOfBirth, monthOfBirth, dayOfBirth);
+  let onDate = new Date(onYear, onMonth, onDay);
+  if (birthDate > onDate) {
+    errorMessage.innerText = "⚠️ Birth date cannot be after the 'find age on' date.";
+    return;
+  }
+
+  // ✅ Age calculation (borrowing method)
+  let years = onYear - yearOfBirth;
+  let months = onMonth - monthOfBirth;
+  let days = onDay - dayOfBirth;
+
+  if (days < 0) {
+    months--;
+    days += new Date(onYear, onMonth, 0).getDate(); // borrow days
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12; // borrow months
+  }
+
+  // ✅ Extra units
+  let totalDays = Math.floor((onDate - birthDate) / (1000 * 60 * 60 * 24));
+  let totalWeeks = Math.floor(totalDays / 7);
+  let weekDays = totalDays % 7;
+  let totalMonths = (years * 12) + months;
+
+  // ✅ Display results
+  errorMessage.innerText = ""; // clear error
+  li_Para.forEach(item => item.classList.remove("hide"));
+
+  age_Para.innerText = `Age = ${years} ${years === 1 ? "year" : "years"}`;
+  year_Month_Day_Para.innerText = `${years} years ${months} months ${days} days`;
+  month_Day_Para.innerText = `${totalMonths} months ${days} days`;
+  week_Day_Para.innerText = `${totalWeeks} weeks ${weekDays} days`;
+  day_Para.innerText = `${totalDays} days`;
+}
+
+// ✅ Clear Function
+function clearAll() {
+  document.querySelectorAll(".inputs").forEach(i => (i.value = ""));
+  clearOutput();
+}
+
+// ✅ Clear Output Helper
+function clearOutput() {
+  age_Para.innerText = "";
+  year_Month_Day_Para.innerText = "";
+  month_Day_Para.innerText = "";
+  week_Day_Para.innerText = "";
+  day_Para.innerText = "";
+  li_Para.forEach(item => item.classList.add("hide"));
+  errorMessage.innerText = "";
+}

@@ -1,0 +1,226 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #ffffff;
+    position: relative;
+    font-family: sans-serif;
+}
+ 
+.gradient-overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background-image:
+        linear-gradient(to right, rgba(229, 231, 235, 0.8) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(229, 231, 235, 0.8) 1px, transparent 1px),
+        radial-gradient(circle 500px at 20% 80%, rgba(139, 92, 246, 0.3), transparent),
+        radial-gradient(circle 500px at 80% 20%, rgba(59, 130, 246, 0.3), transparent);
+    background-size: 48px 48px, 48px 48px, 100% 100%, 100% 100%;
+    }
+
+.container{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    border: 2px solid #e1e1e1;
+    background-color: #F3F5F7;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.section1{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+
+form {
+    display: flex;
+    gap: 1rem;
+}
+
+.inputHeading{
+    padding-right: 1rem;
+    padding-top: 2rem;
+
+}
+
+form input{
+    height: 1rem;
+    width: auto;
+    padding: 0.5rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+}
+
+.birthDateForm div,.findAgeForm div{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cal_btn ,.clear_btn{
+    font-size: 1rem;
+    border:2px solid #e1e1e1;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+/* section 2 */
+
+.section2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    color: gainsboro;
+    background-color: #126DFB;
+    border-radius: 1rem;
+}
+
+.titlePara{
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 1rem;
+    background-color: #0049BB;
+    padding: 0.3rem 1rem;
+}
+
+.ageBox img{
+    width: 100px;
+    height: 100px;
+}
+
+.unitsPara{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.unitsPara ul{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0rem 1rem;
+}
+
+.btns:hover{
+    color: #e1e1e1;
+    background-color: #126DFB;
+    transition: 0.5s;
+}
+
+.hide{
+    display: none;
+}
+
+/* responsiveness */
+
+@media (max-width: 1080px) {
+
+    .container{
+        flex-direction: column;
+    }
+
+    .section2{
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    
+}
+
+
+@media  (max-width: 768px) {
+
+    form input{
+        width: 120px;
+    }
+
+    form{
+        gap: 0.5rem;
+    }
+
+}
+
+
+@media  (max-width: 480px) {
+
+form{
+    flex-direction: column;
+}
+
+ form input{
+        width: auto;
+    }
+    
+.ageBox img{
+    width: 80px;
+    height: 80px;
+    padding-right: 1rem;
+}
+.sec2Age{
+    padding-right: 1rem;
+}
+.titlePara{
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 0.5rem;
+}
+
+.unitsPara ul{
+    padding: 0rem;
+}
+
+}
+
+@media  (max-width: 380px) {
+
+.section2{
+    padding: 1rem 0.5rem;
+}
+
+.titlePara{
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.5rem 0.5rem;
+}
+
+h1{
+    font-size: 2rem;
+}
+
+}
